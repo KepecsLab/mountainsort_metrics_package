@@ -1,0 +1,20 @@
+{
+	"processors":[
+		{
+			"name":"kepecs.refractory_metrics",
+			"version":"0.12",
+			"description":"",
+			"inputs":[
+				{"name":"firings"}
+			],
+			"outputs":[
+				{"name":"cluster_metrics_out"}
+			],
+			"parameters":[
+				{"name":"samplerate","optional":false},
+				{"name":"refractory_period","optional":false}
+			],
+			"exe_command":"$(basepath)/run_matlab.sh $(basepath)/refractory_metrics \"refractory_metrics('$firings$','$cluster_metrics_out$',$samplerate$,$refractory_period$);\""
+		}
+	]
+}

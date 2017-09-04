@@ -1,8 +1,8 @@
 function mclust_metrics(timeseries_fname,firings_fname,cluster_metrics_out_fname,clip_size)
 
-% if (nargin<1) timeseries_fname='/home/hoodoo/mountainsort_temp/mountainlab/tmp_long_term/2017-06-27_12-38-33/8b2e29c3c7c5f04085e88a92ae27acd653ce11f8-mountainsort.bandpass_filter-timeseries_out.tmp'; end;
-% if (nargin<2) firings_fname='/home/hoodoo/mountainsort/P39/2017-06-27_12-38-33/output/ms3--t11/firings.mda'; end;
-% if (nargin<3) cluster_metrics_out_fname='/home/hoodoo/mountainsort/P39/2017-06-27_12-38-33/output/ms3--t11/tmp.json'; end;
+% if (nargin<1) timeseries_fname='/home/hoodoo/mountainsort_temp/mountainlab/tmp_long_term/2016-11-15_14-03-05/43c2ef5976ef26bf0794ef8feab4a9cffd1af21c-mountainsort.bandpass_filter-timeseries_out.tmp'; end;
+% if (nargin<2) firings_fname='/home/hoodoo/mountainsort/P37/2016-11-15_14-03-05/output/ms3--t16/firings.mda'; end;
+% if (nargin<3) cluster_metrics_out_fname='/home/hoodoo/mountainsort/P37/2016-11-15_14-03-05/output/ms3--t16/tmp2.json'; end;
 % if (nargin<4) clip_size=50; end;
 
 mfilepath=fileparts(mfilename('fullpath'));

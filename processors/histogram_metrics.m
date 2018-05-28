@@ -1,9 +1,5 @@
 function histogram_metrics(timeseries_fname,firings_fname,cluster_metrics_out_fname)
 
-% if (nargin<1) timeseries_fname='/home/hoodoo/mountainsort_temp/RecomputeMetrics/pre.tmp.mda'; end;
-% if (nargin<2) firings_fname='/home/hoodoo/mountainsort/P35/2017-02-07_14-50-33/output/ms2--t1/firings.mda'; end;
-% if (nargin<3) cluster_metrics_out_fname='/home/hoodoo/mountainsort_temp/RecomputeMetrics/kepecs.mclust_metrics.json'; end;
-
 mfilepath=fileparts(mfilename('fullpath'));
 addpath([mfilepath,'/../common']);
 addpath([mfilepath,'/../common/jsonlab']);
@@ -15,7 +11,7 @@ outputs=struct('firings_out',cluster_metrics_out_fname_amplitudes);
 params=struct();
 
 fprintf('Extracting amplitudes...\n');
-mp_run_process('compute_amplitudes',inputs,outputs,params)
+ml_run_process('mv.mv_compute_amplitudes',inputs,outputs,params)
 
 fprintf('Reading...\n');
 FF=readmda(cluster_metrics_out_fname_amplitudes);

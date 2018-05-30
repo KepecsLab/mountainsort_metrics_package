@@ -40,13 +40,16 @@ comp2 = zeros(1,length(ids));
 for i = 1:length(ids)
     x = amplitudes(labels==ids(i));
     AvgBin=3; %free param!
-    NBin = (max(x)-min(x)) ./ (2*diff(quantile(x,[0.25,0.75]))/nthroot(length(x),3)) ; %Freedman Diaconis' rule
+    NBin = round((max(x)-min(x)) ./ (2*diff(quantile(x,[0.25,0.75]))/nthroot(length(x),3))) ; %Freedman Diaconis' rule
+    if(NBin<=AvgBin)
+        comp1(i) = 0;
+        comp2(i) = 1;
+        continue
+    end
     edges=linspace(min(x),max(x),NBin);
     hi=hist(x,edges);
+    
      %%method for estimating percentage of missing data
-    if AvgBin>=length(hi)
-        Missing = 0;
-    else
         N_L = mean(hi(1:AvgBin));
         N_R = mean(hi(end-AvgBin+1:end));
         Tail_R_idx  = find(hi>N_L,1,'last');
@@ -61,22 +64,14 @@ for i = 1:length(ids)
         else
             Tail_R_missing=0;
         end
-        Missing = sum([Tail_L_missing,Tail_R_missing]);
-    end
-
-    comp1(i) = 1-Missing;
+    comp1(i) = 1 - sum([Tail_L_missing,Tail_R_missing]);
     
     %%2nd method
-    if AvgBin>=length(hi)
-        ratio = 0;
-    else
         N_L = mean(hi(1:AvgBin));
         N_R = mean(hi(end-AvgBin+1:end));
-        mode_x = max(hi);
+    mode_x = max(hi); % density at mode
         ratio_l = N_L/mode_x;
         ratio_r = N_R/mode_x;
-    end
     comp2(i) = max([ratio_l,ratio_r]);
-    
 end
 

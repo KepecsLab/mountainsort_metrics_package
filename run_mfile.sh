@@ -2,7 +2,7 @@
 
 if ( command -v matlab &> /dev/null )
 then
-  matlab -nosplash -nojvm -r "try, cd(""'"$(dirname $0)"'""), $1, exit(0), catch err, disp(getReport(err,'extended')), exit(-1), end" | tail -n +13 
+  matlab -nosplash -nojvm -r "try, cd(""'"$(dirname $0)"'""), $1, exit(0), catch err, disp(getReport(err,'extended')), exit(-1), end" | tail -n +18
 else
   if ( command -v octave &> /dev/null )
   then
